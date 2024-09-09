@@ -4,9 +4,11 @@ import Transaction from "@/models/transaction";
 const tradedCurrencyBalHandler = async (req: any, res: any) => {
   try {
     const currencies = await Currency.find({});
+
     const userTransactions = await Transaction.find({
       ownerId: req.user._id,
     });
+
     const successfulTransactions = userTransactions.filter(
       (tran) => tran.status === "successful"
     );
